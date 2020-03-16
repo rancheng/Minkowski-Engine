@@ -4,7 +4,7 @@
 *.swp
 *.swn
 *.pyc
-
+.idea/
 build/
 objs/
 dist/
