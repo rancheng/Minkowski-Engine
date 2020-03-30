@@ -112,8 +112,8 @@ def load_file(file_name, voxel_size):
 def generate_input_sparse_tensor(file_name, voxel_size=0.05):
     # Create a batch, this process is done in a data loader during training in parallel.
     batch = [load_file(file_name, voxel_size)]
-    coordinates_, featrues_, pcds = list(zip(*batch))
-    coordinates, features = ME.utils.sparse_collate(coordinates_, featrues_)
+    coordinates_, features_, pcds = list(zip(*batch))
+    coordinates, features = ME.utils.sparse_collate(coordinates_, features_)
 
     # Normalize features and create a sparse tensor
     return coordinates, (features - 0.5).float()
