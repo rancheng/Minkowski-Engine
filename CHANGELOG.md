@@ -1,5 +1,18 @@
 # Change Log
 
+## [master] - 2020-04-01
+
+### Changed
+
+- Use `CPU_ONLY` compile when `torch` fails to detect a GPU (Issue #105)
+- Fix `get_kernel_map` for `CPU_ONLY` (Issue #107)
+- Update `get_union_map` doc (Issue #108)
+- Abstract getattr minkowski backend functions
+- Add `coordinates_and_features_at(batch_index)` function in the SparseTensor class.
+- Add `MinkowskiChannelwiseConvolution` (Issue #92)
+- Update `MinkowskiPruning` to generate an empty sparse tensor as output (Issue #102)
+
+
 ## [0.4.2] - 2020-03-13
 
 ### Added
