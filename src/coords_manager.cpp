@@ -47,7 +47,7 @@ vector<vector<at::Tensor>> CoordsManager::getKernelMap(
     vector<int> dilations, int region_type, at::Tensor offsets,
     py::object py_in_coords_key, py::object py_out_coords_key,
     bool is_transpose, bool is_pool) {
-  // WARNING: This function will not work properly with custon region types.
+  // WARNING: This function will not work properly with custom region types.
   ASSERT(region_type != 2,
          "Currently, it does not support the custom region type.");
   const InOutMapKey map_key = getMapHashKey(

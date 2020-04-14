@@ -4,8 +4,12 @@
 *.swp
 *.swn
 *.pyc
+*.tgz
+*.ply
+*.pth
 .idea/
 build/
 objs/
 dist/
+ModelNet40/
 MinkowskiEngine.egg-info/
