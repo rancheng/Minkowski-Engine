@@ -27,7 +27,7 @@ import MinkowskiEngine as ME
 
 from MinkowskiEngine.modules.resnet_block import BasicBlock, Bottleneck
 
-
+# squeeze excitation layer
 class SELayer(nn.Module):
 
     def __init__(self, channel, reduction=16, D=-1):
