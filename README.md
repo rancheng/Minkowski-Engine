@@ -1,6 +1,9 @@
 [pypi-image]: https://badge.fury.io/py/MinkowskiEngine.svg
 [pypi-url]: https://pypi.org/project/MinkowskiEngine/
 
+## Disclaimer
+This is a forked repo from [https://github.com/StanfordVL/MinkowskiEngine](https://github.com/StanfordVL/MinkowskiEngine) copyright and credit belongs to [ChrisChoy](https://github.com/chrischoy).
+
 ### Build with CMAKE
 
 Please make sure your CUDA version and CUDNN meets the following requirements:
