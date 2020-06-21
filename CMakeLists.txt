@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(minkowski)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(LIBTORCH "/usr/local/libtorch")
+# Below will append libtorch to path so CMake can see files
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${LIBTORCH}")
 find_package(OpenBLAS REQUIRED)
 find_package(Torch REQUIRED) # see also https://pytorch.org/tutorials/advanced/cpp_frontend.html
 find_package(OpenMP REQUIRED)
@@ -123,3 +126,4 @@ set_target_properties(minkowski PROPERTIES LINK_FLAGS "-pthread -fPIC -Wall -Wco
 set(CMAKE_SHARED_LINKER_FLAGS "-L${Python_SITELIB}/torch/lib\
     -L/usr/local/cuda-10.2/lib64 -lstdc++ -lc10 -lcaffe2 -ltorch -ltorch_python -l_C -lcudart -lcublas\
     -lcusparse -lcaffe2_gpu -lc10_cuda -lopenblas")
+
