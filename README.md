@@ -5,10 +5,12 @@
 
 Please make sure your CUDA version and CUDNN meets the following requirements:
 Tested environment:
+```
 Ubuntu 18.04/16.04
 CUDA: 10.2
 CUDNN: 7.6.5
 PyTorch: 1.5.0
+```
 
 Download the torchlib and move it to `/usr/local`:
 ```sh
