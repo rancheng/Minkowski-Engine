@@ -9,6 +9,26 @@ wget -i https://download.pytorch.org/libtorch/cu102/libtorch-cxx11-abi-shared-wi
 unzip libtorch-cxx11-abi-shared-with-deps-1.5.1.zip
 sudo mv libtorch/ /usr/local/
 ```
+:warning: Note that this build is for debug and development in CUDA/C++ backend, if you just need the functions of Minkowski-Engine API, please move back to the official repo: [https://github.com/StanfordVL/MinkowskiEngine](https://github.com/StanfordVL/MinkowskiEngine).
+
+### Debug with CLion
+
+Credit: [Unix&ME](http://unixnme.blogspot.com/2019/11/debug-pybind11-c-extension-with-clion.html)
+
+This is a pybind11 C++/python mixed library, so we can leverage CLion extension to help use debug with GUI.
+
+ - Navigate and open `MinkowskiEngine` as CMake project.
+ - Edit Run/Debug configurations for `MinkowskiEngine` as follows:
+```sh
+target: MinkowskiEngine
+executable: /your/python3/binary
+program arguments: example/example.py
+working directory: $ROOT
+environment variables: PYTHONPATH=$ROOT/cmake-build-debug
+```
+Where `$ROOT` is your project root directory, as shown in the following figure:
+
+Now you can set the break point in the C++ or CUDA code to debug.
 
 # Minkowski Engine
 
