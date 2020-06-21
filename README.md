@@ -3,6 +3,13 @@
 
 ### Build with CMAKE
 
+Please make sure your CUDA version and CUDNN meets the following requirements:
+Tested environment:
+Ubuntu 18.04/16.04
+CUDA: 10.2
+CUDNN: 7.6.5
+PyTorch: 1.5.0
+
 Download the torchlib and move it to `/usr/local`:
 ```sh
 wget -i https://download.pytorch.org/libtorch/cu102/libtorch-cxx11-abi-shared-with-deps-1.5.1.zip
