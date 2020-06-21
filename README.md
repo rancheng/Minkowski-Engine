@@ -28,6 +28,8 @@ environment variables: PYTHONPATH=$ROOT/cmake-build-debug
 ```
 Where `$ROOT` is your project root directory, as shown in the following figure:
 
+![clion_cmake_settings](docs/images/clion_cmake_settings.png)
+
 Now you can set the break point in the C++ or CUDA code to debug.
 
 # Minkowski Engine
