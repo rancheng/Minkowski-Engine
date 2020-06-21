@@ -14,7 +14,7 @@ from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
 
 here = os.path.abspath(os.path.dirname(__file__))
-lib_torch_absolute_dir = "/home/ran/libtorch" # absolute path of libtorch
+lib_torch_absolute_dir = "/usr/local/libtorch" # absolute path of libtorch
 
 if platform.system() == "win32":
     raise ImportError("Windows is currently not supported.")
