@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.10)
 project(minkowski)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(OpenBLAS REQUIRED)
-find_package(Torch REQUIRED)
+find_package(Torch REQUIRED) # see also https://pytorch.org/tutorials/advanced/cpp_frontend.html
 find_package(OpenMP REQUIRED)
 #if (OPENMP_FOUND)
 #    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
@@ -10,7 +10,7 @@ find_package(OpenMP REQUIRED)
 #    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 #endif()
 #SET(GCC_COMPILE_FLAGS "-fwrapv -std=c++14")
-find_package (Python COMPONENTS Interpreter Development)
+find_package(Python COMPONENTS Interpreter Development)
 
 set(CMAKE_CXX_FLAGS "-MMD -MP -ffast-math -funsafe-math-optimizations -fno-math-errno -DBATCH_FIRST=1 -fopenmp -fPIC\
     -fwrapv -std=c++14 -DDEBUG -g -O0\
@@ -44,10 +44,12 @@ set(CMAKE_CUDA_FLAGS "-g -G -std=c++14 -ccbin=g++ -Xcompiler -fPIC -DDEBUG -g -O
     -D_GLIBCXX_USE_CXX11_ABI=0")
 
 
-message("######### ${Python_INCLUDE_DIRS} ############")
-message("######### ${Python_LIBRARY_DIRS} ############")
-message("######### ${Python_SITELIB} ############")
-
+#message("######### Python_INCLUDE_DIRS ${Python_INCLUDE_DIRS} ############")
+#message("######### Python_LIBRARY_DIRS ${Python_LIBRARY_DIRS} ############")
+#message("######### Python_SITELIB ${Python_SITELIB} ############")
+#
+#message("######### CONDA_ROOT ${CONDA_ROOT} ############")
+message("######### ${CMAKE_INSTALL_PREFIX} ############")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 add_subdirectory(pybind11)
 
@@ -101,9 +103,12 @@ set(minkowski_SOURCE_FILES
         ${PROJECT_SOURCE_DIR}/src/utils.hpp
         )
 
-message("#######Project source file:  ${TORCH_INCLUDE_DIRS} ########")
+#message("#######Project source file:  ${TORCH_INCLUDE_DIRS} ########")
+#message("#######Project source file:  ${Python_SITELIB} ########")
+#message("#######Project source file:  ${Python_INTERPRETER_ID} ########")
 
 include_directories(
+        ${TORCH_INCLUDE_DIRS}
         ${PROJECT_SOURCE_DIR}
         ${Python_SITELIB}/torch/include
         ${Python_SITELIB}/torch/include/torch/csrc/api/include

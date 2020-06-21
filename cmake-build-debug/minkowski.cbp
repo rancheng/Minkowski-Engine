@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="minkowski"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\libtorch\;CMake Files\..\..\..\libtorch\share\;CMake Files\..\..\..\libtorch\share\cmake\;CMake Files\..\..\..\libtorch\share\cmake\Torch\;CMake Files\..\..\..\libtorch\share\cmake\Caffe2\;CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\;CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\;CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\;CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\FindCUDA\;CMake Files\cmake-build-debug\;CMake Files\pybind11\;CMake Files\pybind11\tools\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="minkowski">
+				<Option output="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/minkowski.cpython-36m-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ran/libtorch/include"/>
+					<Add directory="/home/ran/libtorch/include/torch/csrc/api/include"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine"/>
+					<Add directory="/home/ran/miniconda3/lib/python3.6/site-packages/torch/include"/>
+					<Add directory="/home/ran/miniconda3/lib/python3.6/site-packages/torch/include/torch/csrc/api/include"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine/pybind"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine/pybind11/include"/>
+					<Add directory="/home/ran/miniconda3/include/python3.6m"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 minkowski"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="minkowski/fast">
+				<Option output="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/minkowski.cpython-36m-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ran/libtorch/include"/>
+					<Add directory="/home/ran/libtorch/include/torch/csrc/api/include"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine"/>
+					<Add directory="/home/ran/miniconda3/lib/python3.6/site-packages/torch/include"/>
+					<Add directory="/home/ran/miniconda3/lib/python3.6/site-packages/torch/include/torch/csrc/api/include"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine/pybind"/>
+					<Add directory="/home/ran/Documents/Playground/MinkowskiEngine/pybind11/include"/>
+					<Add directory="/home/ran/miniconda3/include/python3.6m"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 minkowski/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/pybind/minkowski.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/3rdparty/robin_hood.h">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/broadcast.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/broadcast.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/broadcast.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/broadcast.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/common.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/convolution.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/convolution.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/convolution.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/convolution.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/convolution_transpose.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coords_key.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coords_manager.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coords_manager.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coords_manager.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coordsmap.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/coordsmap.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/gpu.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/gpu.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/gpu_memory_manager.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/math_functions.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/math_functions.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/math_functions.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/mkl_alternate.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_avg.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_avg.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_avg.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_avg.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_global_avg.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_global_max.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_max.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_max.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_max.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pooling_transpose.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/primitives/small_vector.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pruning.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pruning.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pruning.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/pruning.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/quantization.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/region.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/region.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/types.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/union.cpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/union.cu">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/union.cuh">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/union.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/src/utils.hpp">
+			<Option target="minkowski"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/cmake/FindOpenBLAS.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Torch/TorchConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Torch\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Torch/TorchConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Torch\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Caffe2Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Caffe2ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Caffe2Targets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Caffe2Targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/public/cuda.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/public/mkl.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/public/mkldnn.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/public/threads.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/public/utils.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\public\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/FindCUDA.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/FindCUDNN.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/CMakeInitializeConfigs.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindPackageHandleStandardArgs.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindPackageMessage.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/../../../libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libtorch\share\cmake\Caffe2\Modules_CUDA_fix\upstream\FindCUDA\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/detect_cuda_compute_capabilities.cpp">
+			<Option virtualFolder="CMake Files\cmake-build-debug\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug/detect_cuda_version.cc">
+			<Option virtualFolder="CMake Files\cmake-build-debug\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/pybind11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\pybind11\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/pybind11/tools/FindPythonLibsNew.cmake">
+			<Option virtualFolder="CMake Files\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="/home/ran/Documents/Playground/MinkowskiEngine/pybind11/tools/pybind11Tools.cmake">
+			<Option virtualFolder="CMake Files\pybind11\tools\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

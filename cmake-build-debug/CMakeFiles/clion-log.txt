@@ -1,0 +1,15 @@
+/home/ran/Programs/clion-2019.3.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=/home/ran/libtorch -DPYTHON_LIBRARY=/home/ran/miniconda3/lib/libpython3.6m.so -DPYTHON_INCLUDE_DIR=/home/ran/miniconda3/include/python3.6m -G "CodeBlocks - Unix Makefiles" /home/ran/Documents/Playground/MinkowskiEngine
+-- Found OpenBLAS libraries: /usr/lib/x86_64-linux-gnu/libopenblas.so
+-- Found OpenBLAS include: /usr/include/x86_64-linux-gnu
+-- Caffe2: CUDA detected: 10.2
+-- Caffe2: CUDA nvcc is: /usr/local/cuda-10.2/bin/nvcc
+-- Caffe2: CUDA toolkit directory: /usr/local/cuda-10.2
+-- Caffe2: Header version is: 10.2
+-- Found cuDNN: v7.6.5  (include: /usr/include, library: /usr/lib/x86_64-linux-gnu/libcudnn.so)
+-- Autodetected CUDA architecture(s):  6.1
+-- Added CUDA NVCC flags for: -gencode;arch=compute_61,code=sm_61
+######### /usr/local ############
+-- pybind11 v2.5.dev1
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ran/Documents/Playground/MinkowskiEngine/cmake-build-debug

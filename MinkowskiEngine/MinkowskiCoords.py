@@ -29,10 +29,41 @@ from typing import Union, List
 import torch
 from Common import convert_to_int_list, convert_to_int_tensor, prep_args
 import MinkowskiEngineBackend as MEB
+from MinkowskiEngineBackend import MemoryManagerBackend
 
 CPU_COUNT = os.cpu_count()
 if 'OMP_NUM_THREADS' in os.environ:
     CPU_COUNT = int(os.environ['OMP_NUM_THREADS'])
+
+_memory_manager_backend = MemoryManagerBackend.PYTORCH
+
+
+def set_memory_manager_backend(backend: MemoryManagerBackend):
+    r"""Set the GPU memory manager backend
+
+    By default, the Minkowski Engine will use the pytorch memory pool to
+    allocate temporary GPU memory slots. This allows the pytorch backend to
+    effectively reuse the memory pool shared between the pytorch backend and
+    the Minkowski Engine. It tends to allow training with larger batch sizes
+    given a fixed GPU memory. However, pytorch memory manager tend to be slower
+    than allocating GPU directly using raw CUDA calls.
+
+    By default, the Minkowski Engine uses
+    :attr:`ME.MemoryManagerBackend.PYTORCH` for memory management.
+
+    Example::
+
+       >>> import MinkowskiEngine as ME
+       >>> # Set the GPU memory manager backend to raw CUDA calls
+       >>> ME.set_memory_manager_backend(ME.MemoryManagerBackend.CUDA)
+       >>> # Set the GPU memory manager backend to the pytorch memory pool
+       >>> ME.set_memory_manager_backend(ME.MemoryManagerBackend.PYTORCH)
+
+    """
+    assert isinstance(backend, MemoryManagerBackend), \
+        f"Input must be an instance of MemoryManagerBackend not {backend}"
+    global _memory_manager_backend
+    _memory_manager_backend = backend
 
 
 class CoordsKey():
@@ -68,14 +99,19 @@ class CoordsKey():
 
 class CoordsManager():
 
-    def __init__(self, num_threads: int = -1, D: int = -1):
+    def __init__(self,
+                 num_threads: int = -1,
+                 memory_manager_backend: MemoryManagerBackend = None,
+                 D: int = -1):
         if D < 1:
             raise ValueError(f"Invalid dimension {D}")
         self.D = D
-        CPPCoordsManager = MEB.CoordsManager
         if num_threads < 0:
-            num_threads = CPU_COUNT
-        coords_man = CPPCoordsManager(num_threads)
+            num_threads = min(CPU_COUNT, 20)
+        if memory_manager_backend is None:
+            global _memory_manager_backend
+            memory_manager_backend = _memory_manager_backend
+        coords_man = MEB.CoordsManager(num_threads, memory_manager_backend)
         self.CPPCoordsManager = coords_man
 
     def initialize(self,
@@ -83,14 +119,15 @@ class CoordsManager():
                    coords_key: CoordsKey,
                    force_creation: bool = False,
                    force_remap: bool = False,
-                   allow_duplicate_coords: bool = False) -> torch.LongTensor:
+                   allow_duplicate_coords: bool = False,
+                   return_inverse: bool = False) -> torch.LongTensor:
         assert isinstance(coords_key, CoordsKey)
-        mapping = torch.LongTensor()
-        self.CPPCoordsManager.initializeCoords(coords, mapping,
-                                               coords_key.CPPCoordsKey,
-                                               force_creation, force_remap,
-                                               allow_duplicate_coords)
-        return mapping
+        unique_index = torch.LongTensor()
+        inverse_mapping = torch.LongTensor()
+        self.CPPCoordsManager.initializeCoords(
+            coords, unique_index, inverse_mapping, coords_key.CPPCoordsKey,
+            force_creation, force_remap, allow_duplicate_coords, return_inverse)
+        return unique_index, inverse_mapping
 
     def create_coords_key(self,
                           coords: torch.IntTensor,
@@ -100,7 +137,7 @@ class CoordsManager():
                           allow_duplicate_coords: bool = False) -> CoordsKey:
         coords_key = CoordsKey(self.D)
         coords_key.setTensorStride(tensor_stride)
-        mapping = self.initialize(
+        unique_index, inverse_mapping = self.initialize(
             coords,
             coords_key,
             force_creation=True,
@@ -240,7 +277,8 @@ class CoordsManager():
         """
         # region type 1 iteration with kernel_size 1 is invalid
         if isinstance(kernel_size, torch.Tensor):
-            assert (kernel_size > 0).all(), f"Invalid kernel size: {kernel_size}"
+            assert (kernel_size >
+                    0).all(), f"Invalid kernel size: {kernel_size}"
             if (kernel_size == 1).all() == 1:
                 region_type = 0
         elif isinstance(kernel_size, int):
