@@ -1,6 +1,15 @@
 [pypi-image]: https://badge.fury.io/py/MinkowskiEngine.svg
 [pypi-url]: https://pypi.org/project/MinkowskiEngine/
 
+### Build with CMAKE
+
+Download the torchlib and move it to `/usr/local`:
+```sh
+wget -i https://download.pytorch.org/libtorch/cu102/libtorch-cxx11-abi-shared-with-deps-1.5.1.zip
+unzip libtorch-cxx11-abi-shared-with-deps-1.5.1.zip
+sudo mv libtorch/ /usr/local/
+```
+
 # Minkowski Engine
 
 [![PyPI Version][pypi-image]][pypi-url] [![Join the chat at https://gitter.im/MinkowskiEngineGitter/general](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MinkowskiEngineGitter/general)
