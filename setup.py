@@ -10,6 +10,7 @@ from torch.utils.cpp_extension import CppExtension, CUDAExtension, BuildExtensio
 from distutils.sysconfig import get_python_inc
 
 from setuptools import setup, Extension
+from torch.utils.cpp_extension import CUDAExtension
 from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
 
@@ -102,7 +103,8 @@ class CMakeBuild(build_ext):
             build_args += ['--', '/m']
         else:
             cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
-            build_args += ['--', '-j2']
+            import multiprocessing
+            build_args += ['--', '-j'+str(min(multiprocessing.cpu_count(), 12))]
 
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
@@ -112,8 +114,12 @@ class CMakeBuild(build_ext):
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
+        # subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp, stdout=subprocess.PIPE)
 
+libraries = ['minkowski', 'cusparse', 'openblas', 'openblas']
+extra_compile_args = ['-Wno-deprecated-declarations']
+extra_link_args = []
 setup(
     name='MinkowskiEngine',
     version=find_version("MinkowskiEngine", "__init__.py"),
