@@ -85,6 +85,10 @@ class CMakeBuild(build_ext):
 
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable]
+        # add cuda
+        from torch.utils.cpp_extension import _find_cuda_home
+        cmake_args += ["-DCUDA_HOME="+_find_cuda_home()]
+        cmake_args += ["-DCUDACXX="+os.path.join(_find_cuda_home(), "bin/nvcc")]
         # add libtorch
         cmake_args += ['-DCMAKE_PREFIX_PATH=' + lib_torch_absolute_dir]
         self.debug = True
@@ -103,6 +107,8 @@ class CMakeBuild(build_ext):
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
                                                               self.distribution.get_version())
+        env['CUDA_HOME'] = _find_cuda_home()
+        env['CUDACXX'] = os.path.join(_find_cuda_home(), "bin/nvcc")
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
