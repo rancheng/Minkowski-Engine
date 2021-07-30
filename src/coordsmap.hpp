@@ -69,7 +69,7 @@ inline vector<int> stride_copy(const vector<Itype> &src,
 }
 
 using CoordsInnerMap =
-    robin_hood::unordered_flat_map<vector<int>, int, byte_hash_vec<int>>;
+    robin_hood::unordered_flat_map<vector<int>, int, byte_hash_vec<int>>; // key_type, mapped_type, hash_func
 
 class CoordsMap {
 private:
