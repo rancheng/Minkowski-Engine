@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
-project(minkowski)
+SET(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
+project(minkowski LANGUAGES CXX CUDA)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 # find_package(OpenBLAS REQUIRED)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -87,6 +88,7 @@ if (NOT "${CPU_ONLY}" STREQUAL "1")
     execute_process(
             COMMAND ${PYTHON_EXECUTABLE} -c "from torch.utils.cpp_extension import _find_cuda_home; print(_find_cuda_home())"
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            OUTPUT_STRIP_TRAILING_WHITESPACE
             OUTPUT_VARIABLE CUDA_DIR
     )
     message(STATUS "CUDA_DIR: ${CUDA_DIR}")
@@ -117,14 +119,17 @@ message(STATUS "BLAS Libraries: ${BLA_LIBRARIES}")
 
 find_package(Python COMPONENTS Interpreter Development)
 
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fwrapv -std=c++14 -D_GLIBCXX_USE_CXX11_ABI=${WITH_ABI} -Wall -Wcomment -Wno-sign-compare -Wno-deprecated-declarations")
+
 message(STATUS "Python_INCLUDE_DIRS: ${Python_INCLUDE_DIRS}")
 message(STATUS "Python_SITELIB ${Python_SITELIB}")
 message(STATUS "PyTorch_SITELIB ${Python_SITELIB}/torch/share/cmake")
-message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 
+set(Torch_DIR ${Python_SITELIB}/torch/share/cmake/Torch)
+list(APPEND CMAKE_MODULE_PATH ${Python_SITELIB}/torch/share/cmake)
 list(APPEND CMAKE_PREFIX_PATH ${Python_SITELIB}/torch/share/cmake/Torch)
 
-# message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
+message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 find_package(Torch REQUIRED)
 if (TORCH_FOUND)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${TORCH_CXX_FLAGS}")
@@ -151,6 +156,104 @@ list(REMOVE_DUPLICATES MINK_LIB_DIRS)
 message(STATUS "MINK_INCLUDE_DIRS: ${MINK_INCLUDE_DIRS}")
 message(STATUS "MINK_LIB_DIRS: ${MINK_LIB_DIRS}")
 
+if (DEBUG)
+     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
+endif ()
+
+message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+
+include_directories(
+        ${PROJECT_SOURCE_DIR}
+        ${CUDA_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/pybind
+        ${MINK_INCLUDE_DIRS}
+)
+
+set(minkowski_SOURCE_FILES
+        ${PROJECT_SOURCE_DIR}/src/3rdparty/robin_hood.h
+        ${PROJECT_SOURCE_DIR}/src/broadcast.cpp
+        ${PROJECT_SOURCE_DIR}/src/broadcast.cu
+        ${PROJECT_SOURCE_DIR}/src/broadcast.cuh
+        ${PROJECT_SOURCE_DIR}/src/broadcast.hpp
+        ${PROJECT_SOURCE_DIR}/src/common.hpp
+        ${PROJECT_SOURCE_DIR}/src/convolution.cpp
+        ${PROJECT_SOURCE_DIR}/src/convolution.cu
+        ${PROJECT_SOURCE_DIR}/src/convolution.cuh
+        ${PROJECT_SOURCE_DIR}/src/convolution.hpp
+        ${PROJECT_SOURCE_DIR}/src/convolution_transpose.cpp
+        ${PROJECT_SOURCE_DIR}/src/coords_key.cpp
+        ${PROJECT_SOURCE_DIR}/src/coords_manager.cpp
+        ${PROJECT_SOURCE_DIR}/src/coords_manager.cu
+        ${PROJECT_SOURCE_DIR}/src/coords_manager.hpp
+        ${PROJECT_SOURCE_DIR}/src/coordsmap.cpp
+        ${PROJECT_SOURCE_DIR}/src/coordsmap.hpp
+        ${PROJECT_SOURCE_DIR}/src/gpu.cu
+        ${PROJECT_SOURCE_DIR}/src/gpu.cuh
+        ${PROJECT_SOURCE_DIR}/src/gpu_memory_manager.hpp
+        ${PROJECT_SOURCE_DIR}/src/math_functions.cpp
+        ${PROJECT_SOURCE_DIR}/src/math_functions.cu
+        ${PROJECT_SOURCE_DIR}/src/math_functions.hpp
+        ${PROJECT_SOURCE_DIR}/src/mkl_alternate.hpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_avg.cpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_avg.cu
+        ${PROJECT_SOURCE_DIR}/src/pooling_avg.cuh
+        ${PROJECT_SOURCE_DIR}/src/pooling_avg.hpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_global_avg.cpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_global_max.cpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_max.cpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_max.cu
+        ${PROJECT_SOURCE_DIR}/src/pooling_max.hpp
+        ${PROJECT_SOURCE_DIR}/src/pooling_transpose.cpp
+        ${PROJECT_SOURCE_DIR}/src/pruning.cpp
+        ${PROJECT_SOURCE_DIR}/src/pruning.cu
+        ${PROJECT_SOURCE_DIR}/src/pruning.cuh
+        ${PROJECT_SOURCE_DIR}/src/pruning.hpp
+        ${PROJECT_SOURCE_DIR}/src/quantization.cpp
+        ${PROJECT_SOURCE_DIR}/src/region.cpp
+        ${PROJECT_SOURCE_DIR}/src/types.hpp
+        ${PROJECT_SOURCE_DIR}/src/union.cpp
+        ${PROJECT_SOURCE_DIR}/src/union.cu
+        ${PROJECT_SOURCE_DIR}/src/union.cuh
+        ${PROJECT_SOURCE_DIR}/src/union.hpp
+        ${PROJECT_SOURCE_DIR}/src/utils.hpp
+        )
+
+#set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -ccbin=g++ -Xcompiler -fPIC -DDEBUG\
+#    -I${Python_INCLUDE_DIRS}\
+#    -I${Python_INCLUDE_DIRS}/..\
+#    -I${Python_SITELIB}/torch/include\
+#    -I${Python_SITELIB}/torch/include/torch/csrc/api/include\
+#    -I${Python_SITELIB}/torch/include/TH\
+#    -I${Python_SITELIB}/torch/include/THC\
+#    -I${PROJECT_SOURCE_DIR}\
+#    -I${CUDA_INCLUDE_DIRS}\
+#    -DTORCH_API_INCLUDE_EXTENSION_H\
+#    -DTORCH_EXTENSION_NAME=minkowski\
+#    -D_GLIBCXX_USE_CXX11_ABI=${WITH_ABI}")
+string (REPLACE ";" " " NVCC_FLAGS_EXTRA_STR "${NVCC_FLAGS_EXTRA}")
+string(APPEND CMAKE_CUDA_FLAGS "${NVCC_FLAGS_EXTRA_STR}")
+
+message(STATUS "CMAKE_CUDA_FLAGS: ${CMAKE_CUDA_FLAGS}")
+message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
+
+add_subdirectory(pybind11)
+
+#set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -gencode;arch=compute_75,code=sm_75")
+
+cuda_add_library(minkowski_lib STATIC ${minkowski_SOURCE_FILES})
+target_link_libraries(minkowski_lib ${MINK_LIB_DIRS} ${CUDA_LIBRARIES})
+#target_compile_features(minkowski_lib PUBLIC cxx_std_11)
+#set_target_properties(minkowski_lib PROPERTIES LINK_FLAGS "-pthread -fPIC -Wall -Wcomment -Wno-sign-compare -Wno-deprecated-declarations -Wl,-rpath=${Python_SITELIB} -Wl,--no-as-needed -Wl,--sysroot=/")
+set_target_properties(minkowski_lib PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+#set(CMAKE_SHARED_LINKER_FLAGS "-L${Python_SITELIB}/torch/lib\
+#    -L/usr/local/cuda-10.2/lib64 -lstdc++ -lc10 -lcaffe2 -ltorch -ltorch_python -l_C -lcudart -lcublas\
+#    -lcusparse -lcaffe2_gpu -lc10_cuda -lopenblas")
+
+pybind11_add_module(minkowski SHARED ${PROJECT_SOURCE_DIR}/pybind/minkowski.cpp)
+TARGET_LINK_LIBRARIES(minkowski PRIVATE minkowski_lib)
+#target_compile_options(minkowski PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:${NVCC_FLAGS_EXTRA_STR}>)
+#target_compile_features(minkowski PRIVATE cxx_std_11)
 #list(APPEND CMAKE_MODULE_PATH ${Python_SITELIB}/torch/share/cmake)
 #list(APPEND CMAKE_MODULE_PATH ${Python_SITELIB}/torch/share/cmake/Torch)
 #

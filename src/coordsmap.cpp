@@ -354,7 +354,7 @@ CoordsMap::global_reduction_map(const CoordsMap &gout_coords_map,
 #ifdef BATCH_FIRST
   constexpr int batch_index = 0;
 #else
-  constexpr int batch_index = ncols - 1;
+  const int batch_index = ncols - 1;
 #endif
 
   if (!return_per_batch) {
